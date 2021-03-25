@@ -2,18 +2,26 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { CssBaseline, Grid } from '@material-ui/core';
-import Login from "./containers/Login";
+
 import TopNav from './components/TopNav';
 import BottomNav from './components/BottomNav';
 import SignIn from './containers/SignIn';
 import TestLoginForm from './containers/LoginTest';
-import SignUp from './containers/SignUp';
+import NewUser from './containers/SignUp';
+import Login from "./containers/Login";
 import GetData from './containers/Home';
+
+import Navigation from './components/Navigation'
+
+import { AppBar , Avatar, Toolbar} from '@material-ui/core';
+
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Nav from './components/Nav'
 import { Home } from '@material-ui/icons';
+
+import { withRouter } from 'react-router-dom';
 
 //
 const container = {
@@ -40,6 +48,11 @@ const BottomBarStyle = {
   marginTop: 20
 
 };
+const PageNotFound = () =>{
+  return(
+  <h1>404 !</h1>
+  )
+}
 
 
 // <Login/> fully working ***
@@ -48,22 +61,20 @@ function App() {
   //  <BottomNav value = {tab} onChange = {setTab}/>
   return (
     <Router>
-      <div style={{ position: "fixed",
-            top: 0,
-            width: "100%",
-            }}>
-      <TopNav  />
-      </div>
+      
       <div style={container}>
         <Grid container direction="column">
           
           <div style={styles}>
+            
             <Nav  />
+
            
             <Switch>
-            <Route path="/signup" component = {SignUp} />
+            <Route path="/signup" component = {NewUser} />
             <Route path="/login" component = {Login} />
             <Route path="/" exact component = {GetData} />
+            <Route component={PageNotFound}/>
             </Switch>
             
 
@@ -71,6 +82,9 @@ function App() {
           </div>
 
           <div style={BottomBarStyle}>
+            <Navigation/>
+
+  
           <BottomNav />
 
           </div>

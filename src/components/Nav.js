@@ -12,7 +12,7 @@ import {
 export default function Nav() {
     return (
         <nav>
-            <ul>
+            <ul className = "nav-links">
                 <li>
                     <Link to="/">Home</Link>
                 </li>
