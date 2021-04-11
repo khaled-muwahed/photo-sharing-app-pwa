@@ -90,7 +90,8 @@ function Login() {
         .then(async (responseJson) => {
           console.log(responseJson.token);
           setToken(responseJson)
-          await localStorage.setItem('myToken', responseJson.token);
+          await sessionStorage.setItem('myToken', responseJson.token)
+          //await localStorage.setItem('myToken', responseJson.token);
           history.push("/")
 
 

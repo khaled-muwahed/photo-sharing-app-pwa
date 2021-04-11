@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 import { CssBaseline, Grid } from '@material-ui/core';
 
-import TopNav from './components/TopNav';
 import BottomNav from './components/BottomNav';
-import SignIn from './containers/SignIn';
-import TestLoginForm from './containers/LoginTest';
+
 import NewUser from './containers/SignUp';
 import Login from "./containers/Login";
 import GetData from './containers/Home';
 
 import Navigation from './components/Navigation'
+import PostImage from './containers/PostImage';
 
-import { AppBar , Avatar, Toolbar} from '@material-ui/core';
+
 
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Nav from './components/Nav'
-import { Home } from '@material-ui/icons';
 
-import { withRouter } from 'react-router-dom';
 
 //
 const container = {
@@ -57,6 +54,14 @@ const PageNotFound = () =>{
 
 // <Login/> fully working ***
 function App() {
+
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js").then(function(reg) {
+      console.log("register", reg);
+    }).catch(function(err) {
+      console.log("err", err);
+    });
+  }
   // const [tab, setTab] = useState(0);
   //  <BottomNav value = {tab} onChange = {setTab}/>
   return (
@@ -73,6 +78,7 @@ function App() {
             <Switch>
             <Route path="/signup" component = {NewUser} />
             <Route path="/login" component = {Login} />
+            <Route path="/post" component = {PostImage} />
             <Route path="/" exact component = {GetData} />
             <Route component={PageNotFound}/>
             </Switch>
@@ -82,10 +88,9 @@ function App() {
           </div>
 
           <div style={BottomBarStyle}>
-            <Navigation/>
+         
 
   
-          <BottomNav />
 
           </div>
         </Grid>

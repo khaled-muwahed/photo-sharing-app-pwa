@@ -23,21 +23,21 @@ function GetData() {
 
 
 
-    const checkLogIn = async()=>{
-        const getToken =await localStorage.getItem("myToken");
-        if (getToken === null ){
-             alert("you need to loog in")
-             history.push("/login");
-             console.log("you need to loog in");
+    const checkLogIn = async () => {
+        const getToken = await sessionStorage.getItem("myToken");
+        if (getToken === null) {
+            alert("you need to loog in")
+            history.push("/login");
+            console.log("you need to loog in");
         }
         else {
             getData()
             console.log("you are in")
-    }
+        }
 
     }
     const logOut =async () => {
-        await localStorage.clear();
+        await sessionStorage.clear();
         history.push("/login")
         console.log("logged out")
     }
@@ -71,13 +71,20 @@ function GetData() {
                 console.log(error);
             })
     }
-    /*
     
-    */
+   /*
+
+   */
+    
 
     return (
+
+        <div>
+
+<button className="buttonStyle"
+             onClick ={logOut}> logOut</button>
         <div style={imageStyle}>
-             <button onClick ={logOut}> logOut</button>
+           
 
 
             {items.map(item => (
@@ -95,6 +102,7 @@ function GetData() {
                 </React.Fragment>
             ))}
            
+        </div>
         </div>
     );
 }
