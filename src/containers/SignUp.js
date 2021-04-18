@@ -3,15 +3,13 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./Login.css";
 import {
+ useHistory,
 
+} from "react-router-dom";
 
-    Route, useHistory,
-   
-  } from "react-router-dom";
-  
-import { withRouter } from 'react-router-dom';
+import { getApiUrl } from "../utils";
 
-    function  NewUser() {
+function NewUser() {
     const [email, setEmail] = useState("");
 
     const [password, setPassword] = useState("");
@@ -19,18 +17,15 @@ import { withRouter } from 'react-router-dom';
     const [first_name, setFirst_name] = useState("");
     const [last_name, setLast_name] = useState("");
 
-    
+
     const history = useHistory();
 
 
-    function validateForm() {
-        return email.length > 0 && password.length > 0;
-    }
-
     function handleSubmit(event) {
+        event.preventDefault();
         SignUp(event);
         // getData();
-        event.preventDefault();
+
         console.log(email, password, token)
     }
 
@@ -38,70 +33,76 @@ import { withRouter } from 'react-router-dom';
     const SignUp = async (event) => {
         //Client side user validation if user leaves any of the required feilds empty, they will get an error
         event.preventDefault();
-        if (first_name=== ''|| last_name=== ''|| email === '' || password === '') {
+        if (first_name === '' || last_name === '' || email === '' || password === '') {
             alert("fields cant be blank");
-          }
-          else{
-        return fetch("http://localhost:3333/api/user/new", {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                first_name: first_name,
-                last_name: last_name,
-                email: email,
-                password:
-                    password
-            })
-
         }
+        else {
+            return fetch(getApiUrl("/api/user/new"), {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    first_name: first_name,
+                    last_name: last_name,
+                    email: email,
+                    password:
+                        password
+                })
 
-        )
+            }
 
-            .then(async (response) => {
-                if (response.status === 200) {
-                    alert("Account Created")
-                    console.log("Account Created")
-                    history.push("/login")
+            )
 
-
-                    return response.json()
-
-
-                } else if (response.status === 400) {
-                    console.log('the email used by another member')
-                    alert("the email used by another member")
-                    throw 'the email used by another member';
-
-                }
-                else if (response.status === 500) {
-                    throw 'server error';
-                }
-                else {
-                    alert("Somthing went wrong")
-                    throw 'Somthing went wrong';
-                }
-
-            })
-            .then(async (responseJson) => {
-                //console.log(responseJson);
-                setToken(responseJson)
+                .then(async (response) => {
+                    if (response.status === 200) {
+                        alert("Account Created")
+                        console.log("Account Created")
+                        history.push("/login")
 
 
-                console.log("logged in successfully")
-
-            })
-            .catch((error) => {
-                console.log(error);
+                        return response.json()
 
 
-                console.log("error encountered", error)
+                    } else if (response.status === 400) {
+                        console.log('invalid input')
+                        alert("invalid credentials")
+                        throw 'invalid input';
+
+                    }
+                    else if (response.status === 401) {
+                        console.log('This Email is already Taken')
+                        alert("This Email is already Taken")
+                        throw 'This Email is already Taken';
+
+                    }
+                    else if (response.status === 500) {
+                        throw 'server error';
+                    }
+                    else {
+                        alert("Somthing went wrong")
+                        throw 'Somthing went wrong';
+                    }
+
+                })
+                .then(async (responseJson) => {
+                    //console.log(responseJson);
+                    setToken(responseJson)
 
 
-            })
+                    console.log("logged in successfully")
+
+                })
+                .catch((error) => {
+                    console.log(error);
+
+
+                    console.log("error encountered", error)
+
+
+                })
+        }
     }
-}
 
 
 
@@ -110,58 +111,62 @@ import { withRouter } from 'react-router-dom';
 
 
     return (
-        <div >
+        <div className="Login text-center">
             <Form onSubmit={handleSubmit}>
                 <div style={styles.formItem}>
-                    <Form.Group size="lg" controlId="first_name">
-                        <Form.Label style={styles.formLabel}>First Name: </Form.Label>
+                    <Form.Group size="lg" controlId="first_name" className="text-left">
+
                         <Form.Control
+                            className="p-4 border-2 border-gray-300 rounded-xl w-full block appearance-none"
                             autoFocus
+                            placeholder="First name .."
                             type="name"
                             value={first_name}
-                            style={styles.formInput}
+
                             onChange={(e) => setFirst_name(e.target.value)}
                         />
                     </Form.Group>
                 </div>
                 <div style={styles.formItem}>
-                    <Form.Group size="lg" controlId="last_name">
-                        <Form.Label style={styles.formLabel}>Last name: </Form.Label>
+                    <Form.Group size="lg" controlId="last_name" className="text-left">
                         <Form.Control
+                            className="p-4 border-2 border-gray-300 rounded-xl w-full block appearance-none"
                             autoFocus
+                            placeholder="Last name .."
                             type="name"
                             value={last_name}
-                            style={styles.formInput}
                             onChange={(e) => setLast_name(e.target.value)}
                         />
                     </Form.Group>
                 </div>
                 <div style={styles.formItem}>
-                    <Form.Group size="lg" controlId="email">
-                        <Form.Label style={styles.formLabel}>Email: </Form.Label>
+                    <Form.Group size="lg" controlId="email" className="text-left">
                         <Form.Control
+                            className="p-4 border-2 border-gray-300 rounded-xl w-full block appearance-none"
                             autoFocus
+                            placeholder="Email .."
                             type="email"
                             value={email}
-                            style={styles.formInput}
+
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </Form.Group>
                 </div>
                 <div style={styles.formItem}>
-                    <Form.Group size="lg" controlId="password">
-                        <Form.Label style={styles.formLabel}>Password</Form.Label>
+                    <Form.Group size="lg" controlId="password" className="text-left">
                         <Form.Control
+                            className="p-4 border-2 border-gray-300 rounded-xl w-full block appearance-none"
                             type="password"
+                            placeholder="Password .."
                             value={password}
-                            style={styles.formInput}
+
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </Form.Group>
                 </div>
-                <Button block size="lg" type="submit" style={styles.buttonStyle}>
+                <Button block size="lg" type="submit" className="rounded-xl bg-purple-500 font-semibold py-5 px-16 text-white shadow-md">
                     SignUp
-        </Button>
+                </Button>
             </Form>
         </div>
     );

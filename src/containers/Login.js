@@ -1,40 +1,28 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import NewUser from './SignUp'
-
 import {
+  Link,
+  useHistory,
 
-
-  Route, useHistory,
- 
 } from "react-router-dom";
-
-
-//import history from '../components/history'
 import "./Login.css";
 
 
-import { withRouter } from 'react-router-dom';
+import { getApiUrl } from "../utils";
 
 
 function Login() {
+  
   const history = useHistory();
   const [email, setEmail] = useState("");
-
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
-  const [URL, setUrl] = useState("");
-
-
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
-  }
 
   function handleSubmit(event) {
-    SignIn(event);
-    // getData();
     event.preventDefault();
+    SignIn(event);
+
     console.log(email, password, token)
   }
 
@@ -46,7 +34,7 @@ function Login() {
       alert("fields cant be blank");
     }
     else {
-      return fetch("http://localhost:3333/api/user/login", {
+      return fetch(getApiUrl("/api/user/login"), {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'
@@ -56,7 +44,6 @@ function Login() {
           password:
             password
         })
-
       }
 
       )
@@ -64,12 +51,10 @@ function Login() {
         .then(async (response) => {
           if (response.status === 200) {
             console.log("Logged In")
-            alert("Logged In");
-           
+            // alert("Logged In");
+            console.log(response);
 
-
-
-            return response.json()
+            return response;
 
 
           } else if (response.status === 400) {
@@ -87,15 +72,14 @@ function Login() {
           }
 
         })
+        .then(async response => response.json())
         .then(async (responseJson) => {
-          console.log(responseJson.token);
+          console.log('body... ', responseJson);
+          console.log('TOKEN: ' + responseJson.token);
           setToken(responseJson)
           await sessionStorage.setItem('myToken', responseJson.token)
-          //await localStorage.setItem('myToken', responseJson.token);
           history.push("/")
 
-
-          // console.log("logged in successfully")
 
         })
         .catch((error) => {
@@ -108,61 +92,22 @@ function Login() {
         })
     }
   }
-  const PageNotFound = () => {
-    return (
-      <h1>404 !</h1>
-    )
-  }
-/*
-  const navHome = () => {
-    history.push("/signup")
-
-
-  }*/
 
 
 
-
-  const getData = async (e) => {
-
-    return fetch("http://127.0.1.1:3333/api/posts/feed", {
-      method: 'get',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-authorization': token
-
-      }
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          return response.json()
-        } else {
-          throw 'Somthing went wrong';
-        }
-      })
-      .then(async (responseJson) => {
-        console.log("got data " + JSON.stringify(responseJson))
-        setUrl(e.target.value);
-        console.log(URL, "my url")
-
-
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
 
 
   return (
-    <div className="Login">
-       
+    <div className="Login text-center">
+
       <Form onSubmit={handleSubmit}>
         <div style={styles.formItem}>
-          <Form.Group size="lg" controlId="email">
-            <Form.Label style={styles.formLabel}>Email</Form.Label>
+          <Form.Group size="lg" controlId="email" className="text-left">
+            {/*<Form.Label className="text-grey-300 mr-6">Email</Form.Label>*/}
             <Form.Control
-              style={styles.formInput}
+              className="p-4 border-2 border-gray-300 rounded-xl w-full block appearance-none"
               autoFocus
+              placeholder="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -171,10 +116,11 @@ function Login() {
         </div>
         <div style={styles.formItem}>
 
-          <Form.Group size="lg" controlId="password">
-            <Form.Label style={styles.formLabel}>Password</Form.Label>
+          <Form.Group size="lg" controlId="password" className="text-left">
+            {/*<Form.Label className="text-grey-300 mr-6 text-sm text-gray-500">Password</Form.Label>*/}
             <Form.Control
-              style={styles.formInput}
+              className="p-4 border-2 border-gray-300 rounded-xl w-full block appearance-none"
+              placeholder="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -182,9 +128,12 @@ function Login() {
           </Form.Group>
         </div>
         <div style={styles.formItem}>
-          <Button block size="lg" type="submit" style={styles.buttonStyle} >
+          <Button block size="lg" type="submit" className="rounded-xl bg-purple-500 font-semibold py-5 px-16 text-white shadow-md">
             Login
         </Button>
+          <div className="text-gray-300 mt-4">
+            Don't have an account? <span className="text-blue-500"><Link to="/signup">Create account</Link></span>
+          </div>
         </div>
       </Form>
 
