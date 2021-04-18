@@ -19,8 +19,8 @@ Here are some screenshots of the PWA UI.
 
 
 ## Installation
-
-I will list the required steps to run the applications but first you would need to clone and install the Kgram back end server on your machine, Click [here](https://github.com/khaled-muwahed/Kgram_server.git) to redirect you to the repo.
+### First step
+I will list the required steps to run the applications but first you would need to clone and install the Kgram back end server on your machine, Click [here](https://github.com/khaled-muwahed/Kgram_server.git)
 
 Once You have the server on you Machine you need to install node modules by typing the following command in your terminal:
 ```bash
@@ -29,4 +29,17 @@ npm install
 After Installing node modules the server is ready and you can start it by typing the following command in your terminal:
 ```bash
 npm start
+```
+the server is up and running and waiting to get the request from the front end.
+
+### Second step
+
+Now you can clone the front-end app repo and get ready 
+type the following command to install node modules in your terminal
+```bash
+npm install
 ``` 
+After Installing node modules the Progressive web app is ready and you can start it by typing the following command in your terminal:
+```bash
+npm start
+```
