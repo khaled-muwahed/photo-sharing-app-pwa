@@ -5,7 +5,7 @@ Written using React.js
 
 ## Demo
 
-Here is a demo of the project.
+Here is a demo of the project, that i recorded on my phone.
 
 <img src="screenshots/ezgif.com-gif-maker.gif" width="400" style="display: block; margin-left: auto; margin-right: auto ">
 
