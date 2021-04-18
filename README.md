@@ -7,7 +7,7 @@ Written using React.js
 
 Here is a demo of the project.
 
-<img src="screenshots/ezgif.com-gif-maker.gif" width="390" style="display: block; margin-left: auto; margin-right: auto ">
+<img src="screenshots/ezgif.com-gif-maker.gif" width="400" style="display: block; margin-left: auto; margin-right: auto ">
 
 ## Screenshots
 
