@@ -20,7 +20,8 @@ Here are some screenshots of the PWA UI.
 
 ## Installation
 
-I will list the required steps to run the applications but first you would need to clone and install the Kgram back end server on your machine, Click [here](https://github.com/khaled-muwahed/Kgram_server.git)
+I will list the required steps to run the applications but first you would need to clone and install the Kgram back end server on your machine, Click [here](https://github.com/khaled-muwahed/Kgram_server.git) to redirect you to the repo.
+
 Once You have the server on you Machine you need to install node modules by typing the following command in your terminal:
 ```bash
 npm install
