@@ -16,3 +16,13 @@ Here are some screenshots of the PWA UI.
 <img src="screenshots/IMG_3349.PNG" width="250" style="display: inline-block; width: 250px; margin-right: 20px; margin-top: 20px;">  <img src="screenshots/IMG_3350.PNG" width="250" style="display: inline-block; width: 250px; margin-right: 20px; margin-top: 20px;">  <img src="screenshots/IMG_3351.PNG" width="250" style="display: inline-block; width: 250px; margin-right: 20px; margin-top: 20px;">
 <img src="screenshots/IMG_3352.PNG" width="250" style="display: inline-block; width: 250px; margin-right: 20px; margin-top: 20px;"> <img src="screenshots/IMG_3353.PNG" width="250" style="display: inline-block; width: 250px; margin-right: 20px; margin-top: 20px;"> <img src="screenshots/IMG_3354.PNG" width="250" style="display: inline-block; width: 250px; margin-right: 20px; margin-top: 20px;">   
 <img src="screenshots/IMG_3355.PNG" width="250" style="display: inline-block; width: 250px; margin-right: 20px; margin-top: 20px;"> <img src="screenshots/IMG_3356.PNG" width="250" style="display: inline-block; width: 250px; margin-right: 20px; margin-top: 20px;">  <img src="screenshots/IMG_3357.PNG" width="250" style="display: inline-block; width: 250px; margin-right: 20px; margin-top: 20px;">  
+
+
+## Installation
+
+I will list the required steps to run the applications but first you would need to clone and install the Kgram back end server on your machine, Click [here](https://github.com/khaled-muwahed/Kgram_server.git)
+Once You have the server on you Machine you need to install node modules by typing 
+```bash
+npm install
+``` 
+in you terminal.
