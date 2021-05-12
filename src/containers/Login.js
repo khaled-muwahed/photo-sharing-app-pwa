@@ -79,16 +79,10 @@ function Login() {
           setToken(responseJson)
           await sessionStorage.setItem('myToken', responseJson.token)
           history.push("/")
-
-
         })
         .catch((error) => {
           console.log(error);
-
-
           console.log("error encountered", error)
-
-
         })
     }
   }
@@ -99,7 +93,6 @@ function Login() {
 
   return (
     <div className="Login text-center">
-
       <Form onSubmit={handleSubmit}>
         <div style={styles.formItem}>
           <Form.Group size="lg" controlId="email" className="text-left">

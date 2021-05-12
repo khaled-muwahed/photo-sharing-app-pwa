@@ -14,13 +14,9 @@ const PageNotFound = () => {
 }
 
 function App() {
-
   return (
     <Router>
-
-
       <Nav />
-
       <Switch>
         <Route path="/signup" component={NewUser} />
         <Route path="/login" component={Login} />
@@ -28,8 +24,6 @@ function App() {
         <Route path="/" exact component={GetData} />
         <Route component={PageNotFound} />
       </Switch>
-
-
       <span className="text-gray-300 block text-center mb-16">2021. Developed by Khaled Muwahed. MMU.</span>
 
     </Router>

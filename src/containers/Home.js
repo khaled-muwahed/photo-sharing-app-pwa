@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Login.css";
 import { withRouter } from 'react-router-dom';
-import { getApiUrl, getImageUrl } from "../utils";
+import { getApiUrl, /*getImageUrl */} from "../utils";
 
 
 function GetData() {
@@ -63,7 +63,7 @@ function GetData() {
                         <div className="mb-3 shadow-md w-full lg:w-1/2 mx-auto rounded-md overflow-hidden" style={{ maxWidth: '600px' }}>
                             <img
                                 className="mx-auto block"
-                                src={getImageUrl(item.url)}
+                                src={/*getImageUrl*/(item.url)}
                                 alt="new"
                             />
 
