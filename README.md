@@ -1,5 +1,5 @@
 # photo-sharing-app-pwa
-•	Instagram clone: full-stack progressive web app, using React, service workers, JWT tokens, Node.js, Express.js, OpenAPI Specification, MongoDB and TailwindCSS. it uses Kgram server I previously developed as a back-end
+Instagram clone: full-stack progressive web app, using React, service workers, JWT tokens, Node.js, Express.js, OpenAPI Specification, MongoDB and TailwindCSS. it uses Kgram server I previously developed as a back-end
 Written using React.js
 
 
